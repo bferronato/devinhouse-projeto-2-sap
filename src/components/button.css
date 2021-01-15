@@ -1,5 +1,6 @@
 button {
     padding: 0px 20px 0px 20px;
+    box-shadow: 2px 3px 3px #9E9E9E;
 }
 
 .new {
@@ -9,7 +10,8 @@ button {
 .white {
     background-color: white;
     color: #757575;
-    border: 1px solid #757575;;
+    border: 1px solid  #9E9E9E;
+    font-weight: bold;
 }
 
 .grey {

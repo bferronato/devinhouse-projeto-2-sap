@@ -2,12 +2,14 @@
 .card{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     border: 1px solid #9E9E9E;
-    box-shadow: 4px 4px 5px #757575;
+    box-shadow: 2px 3px 3px #9E9E9E;
     margin: 20px 0px;
 }
 
 img {
-    width: 30px;
-    height: 20px;
+    width: 70px;
+    height: 70px;
+    padding: 10px;
 }

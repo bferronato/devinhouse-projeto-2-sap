@@ -8,7 +8,7 @@ export default function SearchBar(props) {
 
             <div className="searchbar">
                 <input type={type} id="process-search" name={name} placeholder={placeholder}/>
-                <button><img src="img/search.svg" alt="" /></button>
+                <button><img src="img/search.svg" alt="lupa" className="img-lupa" /></button>
             </div>
         </>
     )
