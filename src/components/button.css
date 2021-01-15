@@ -1,0 +1,28 @@
+button {
+    padding: 0px 20px 0px 20px;
+}
+
+.new {
+    margin-left: 20px;
+}
+
+.white {
+    background-color: white;
+    color: #757575;
+    border: 1px solid #757575;;
+}
+
+.grey {
+    background-color: #757575;;
+}
+
+.blue {
+    background-color: #005b95;
+}
+
+.white-blue {
+
+    background-color: white;
+    border: 1px solid #005b95;
+    color:#005b95;
+}

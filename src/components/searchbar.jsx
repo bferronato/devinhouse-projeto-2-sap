@@ -1,10 +1,15 @@
+import "../components/searchbar.css"
+
 export default function SearchBar(props) {
-    const {name, label, type } = props;
+    const { name, label, type, placeholder } = props;
     return (
         <>
             <label for="process-search">{label}</label>
-            <input type={type} id="process-search" name={name}
-                aria-label="Busque o processo desejado" />
+
+            <div className="searchbar">
+                <input type={type} id="process-search" name={name} placeholder={placeholder}/>
+                <button><img src="img/search.svg" alt="" /></button>
+            </div>
         </>
     )
 }

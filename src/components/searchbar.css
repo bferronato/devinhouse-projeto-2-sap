@@ -1,0 +1,31 @@
+.searchbar { 
+    position: relative; 
+    width: 350px;
+} 
+
+.searchbar input {
+    width: 350px;
+    height: 30px;
+   
+
+}
+
+.searchbar button {
+    position: absolute;
+    right: 0px;
+    border: none;
+    margin-top: 1px;
+    margin-right: 1px;
+    background-color: transparent;
+    height: 28px;
+    outline:none;
+    padding: 0px;
+    
+}
+
+.searchbar button:hover{
+    cursor:pointer;
+  }
+
+
+

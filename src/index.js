@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Home from '../src/pages/home';
+import Processos from "../src/pages/processos"
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <Home />
+    <Processos />
   </React.StrictMode>,
   document.getElementById('root')
 );

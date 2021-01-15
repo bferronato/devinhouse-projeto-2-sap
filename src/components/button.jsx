@@ -1,9 +1,11 @@
+import "../components/button.css";
+
 export default function Button(props) {
-    const { button } = props
+    const { label, variation } = props
    
     return (
         <>
-           <button type="button">{button}</button>
+           <button className={variation} type="button">{label}</button>
         </>
     )
 }
