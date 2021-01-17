@@ -1,15 +1,37 @@
 import "../components/searchbar.css"
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { OutlinedInput } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
-export default function SearchBar(props) {
-    const { name, label, type, placeholder } = props;
+export default function SearchBar() {
+
     return (
         <>
-            <label for="process-search">{label}</label>
-
-            <div className="searchbar">
-                <input type={type} id="process-search" name={name} placeholder={placeholder}/>
-                <button><img src="img/search.svg" alt="lupa" className="img-lupa" /></button>
-            </div>
+            <OutlinedInput className="searchbar"
+            
+                placeholder="Pesquise por uma infomração do processo"
+                fullWidth
+                endAdornment=
+                {<InputAdornment position="end">
+                    <IconButton className="search-button" aria-label="pesquisar">
+                        <SearchIcon></SearchIcon>
+                    </IconButton>
+                </InputAdornment>}
+            />
         </>
     )
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

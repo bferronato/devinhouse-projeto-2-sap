@@ -26,3 +26,8 @@ span {
     text-decoration: underline;
     font-weight: bold;
 }
+
+.content-home {
+    width: 40%;
+    text-align: center;
+}

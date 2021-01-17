@@ -1,6 +1,6 @@
 button {
-    padding: 0px 20px 0px 20px;
     box-shadow: 2px 3px 3px #9E9E9E;
+    
 }
 
 .new {
@@ -12,14 +12,25 @@ button {
     color: #757575;
     border: 1px solid  #9E9E9E;
     font-weight: bold;
+    padding: 0px 20px;
+    
+
 }
 
 .grey {
-    background-color: #757575;;
+    background-color: #9E9E9E;
+    color:white;
+    border: 1px solid  #9E9E9E;
+    font-weight: bold;
+    padding: 10px 10px;
 }
 
 .blue {
     background-color: #005b95;
+    color:white;
+    border: 1px solid  #9E9E9E;
+    font-weight: bold;
+    padding: 10px 10px;
 }
 
 .white-blue {
@@ -27,4 +38,5 @@ button {
     background-color: white;
     border: 1px solid #005b95;
     color:#005b95;
+    padding: 10px 10px;
 }

@@ -2,6 +2,7 @@ import SearchBar from "../components/searchbar";
 import Card from "../components/card";
 import Button from "../components/button";
 import "../pages/processos.css";
+import  Details  from "../components/details"
 
 export default function Processos() {
     return (
@@ -12,16 +13,15 @@ export default function Processos() {
                 </div>
                 
                 <div className="page-content">
-                    <div className="flex">
+                    <div className="flex search-container">
                     <SearchBar type="search"> </SearchBar>
                     <Button variation="white new" label="Novo"></Button>
                     </div>
                     <div className="card-list">
                         <Card></Card>
-                    </div>
+                     </div>  
                 </div>
-            </div>
-
+            </div>  
         </>
     )
 }
