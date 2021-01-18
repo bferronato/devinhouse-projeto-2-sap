@@ -1,59 +1,64 @@
-import { FormControl, TextField } from '@material-ui/core';
-import Button from "./button";
-import "../components/registerform.css";
+import { TextField, Button, Grid, Typography, Box } from '@material-ui/core';
+
 
 export default function RegisterForm() {
-
     return (
         <>
-        <div className="title-form">Cadastro de processo</div>
-        <div className="form-container">
-            <FormControl>
-                <TextField
-                    id="assunto"
-                    label="Assunto"
-                    multiline="multiline"
-                    margin="dense"
-                    size="small"
-                    variant="standard"
-                    fullWidth
-                     />
-                
-                <TextField
-                    id="interessados"
-                    label="Interessados"
-                    multiline="multiline"
-                    margin="dense"
-                    size="small"
-                    variant="standard" 
-                    fullWidth
+            <Grid container spacing={2} direction="column">
+                <Grid item xs={12}>
+                    <TextField
+                        id="assunto"
+                        label="Assunto"
+                        multiline="multiline"
+                        margin="dense"
+                        size="small"
+                        variant="standard"
+                        fullWidth
                     />
-                <TextField
-                    id="novoInteressado"
-                    label="Novo Interessado"
-                    multiline="multiline"
-                    margin="dense"
-                    size="small"
-                    variant="standard"
-                    fullWidth
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography>
+                        Interessados
+                    </Typography>
+                    <Typography>
+                        Julia barros
+                    </Typography>
+                    <Typography>
+                        Julia barros
+                    </Typography>
+
+                </Grid>
+                <Grid container item alignItems="flex-end">
+                    <Grid item xs={8}>
+                        <TextField
+                            id="novoInteressado"
+                            label="Novo Interessado"
+                            multiline="multiline"
+                            margin="dense"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                        />
+                    </Grid>
+                    <Grid xs={4}>
+                        <Box ml={1}>
+                            <Button variant="contained">Adicionar
+                        </Button>
+                        </Box>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        id="descricao"
+                        label="Descrição"
+                        multiline="multiline"
+                        margin="dense"
+                        size="small"
+                        variant="standard"
+                        fullWidth
                     />
-                <TextField
-                    id="descricao"
-                    label="Descrição"
-                    multiline="multiline"
-                    margin="dense"
-                    size="small"
-                    variant="standard" 
-                    fullWidth
-                    />
-            </FormControl>
-            <div className="btn-add">
-            <Button label="Adicionar" variation="grey"></Button>
-            </div>
-            </div>
-            <div className="btn-save">
-            <Button label="Salvar" variation="blue"></Button>
-            </div>
+                </Grid>
+            </Grid>
         </>
     )
 }

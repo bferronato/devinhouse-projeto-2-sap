@@ -1,6 +1,6 @@
 import "../components/card.css";
 
-export default function Card(props) {
+export default function Card() {
 
 
     return (

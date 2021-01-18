@@ -2,13 +2,14 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: normal;
+   
 }
 
 .container-home {
     display: flex;
     flex-direction: column;
     align-items: center;
-   
+    margin: 300px 0px;
 }
 
 .title {
@@ -21,11 +22,6 @@ body {
     font-size: 14px;
 }
 
-span {
-    color: #005b95;
-    text-decoration: underline;
-    font-weight: bold;
-}
 
 .content-home {
     width: 40%;

@@ -4,12 +4,16 @@ import './index.css';
 import Home from '../src/pages/home';
 import Processos from "../src/pages/processos"
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Home />
-    <Processos />
-  </React.StrictMode>,
+  <BrowserRouter>
+  <Switch>
+  <Route path="/home" exact={true} component={Home} />
+  <Route path="/processos" exact={true} component={Processos} />
+  
+    </Switch>
+    </ BrowserRouter>,
   document.getElementById('root')
 );
 

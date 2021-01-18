@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@material-ui/core';
 
-export default function Details() {
+export default function ProcessDetails() {
     return (
 
         <Grid container spacing={2}>
