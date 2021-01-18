@@ -1,7 +1,8 @@
 import SearchBar from "../components/searchbar";
 import "../pages/home.css";
-import FormWindow from "../components/formwindow"
+import FormWindow from "../containers/formwindow"
 import Button from '@material-ui/core/Button';
+
 
 export default function Home() {
 
