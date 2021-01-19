@@ -1,11 +1,12 @@
 
 .card{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     border: 1px solid #9E9E9E;
     box-shadow: 2px 3px 3px #9E9E9E;
     margin: 20px 0px;
+    
 }
 
 img {

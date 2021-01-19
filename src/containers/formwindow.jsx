@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Typography } from '@material-ui/core';
 
 export default function FormWindow(props) {
-    const { isHome } = props;
+    const { isHome, processes, setProcesses, process, setProcess } = props;
     const [open, setOpen] = useState(false);
     const [interested, setInterested] = useState([{ id: 1, name: "Julia Barros Correia" }, { id: 2, name: "Antônio Ribeiro Fernandes" }])
     const [interest, setInterest] = useState({})
@@ -31,6 +31,26 @@ export default function FormWindow(props) {
         ])
     }
 
+    const handleAddProcess = () => {
+        setProcesses([
+            ...processes,
+            {
+                id: Math.random().toString(36).substr(2, 9),
+                numero: "SOFT 0001/2018",
+                interessados: interested,
+                ...process,
+            }
+        ])
+        console.log(processes)
+        setOpen(false)
+    }
+
+    const handleChange = (event) => {
+        const { value, name } = event.target
+        console.log(name, value)
+        setProcess({ ...process, [name]: value })
+    };
+
 
     return (
         <>
@@ -51,6 +71,7 @@ export default function FormWindow(props) {
                                     variant="standard"
                                     fullWidth
                                     name="assunto"
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -89,8 +110,8 @@ export default function FormWindow(props) {
                                     size="small"
                                     variant="standard"
                                     fullWidth
-                                    name="desricao"
-
+                                    name="descricao"
+                                    onChange={handleChange}
                                 />
                             </Grid>
                         </Grid>
@@ -99,7 +120,7 @@ export default function FormWindow(props) {
                         <Button onClick={handleClose} color="primary">
                             Cancelar
                         </Button>
-                        <Button variant="contained" color="primary" onClick={handleClose}>
+                        <Button variant="contained" color="primary" onClick={handleAddProcess}>
                             Salvar
                         </Button>
                     </DialogActions>

@@ -4,30 +4,35 @@ import Card from "../components/card";
 import "../pages/processos.css";
 import FormWindow from "../containers/formwindow";
 import { Box } from '@material-ui/core';
-
-
-
+import ProcessDetails from "../components/processdetails";
 
 
 export default function Processos() {
 
-    const [processes] = useState([
+    const [processes, setProcesses] = useState([
         {
             id: 1,
             numero: "SOFT 0001/2018",
             assunto: "In vestibulum dis",
-            interessado: "Danilo Barbosa Correia",
+            interessados: [{ id: 1, name: "Julia Barros Correia" }],
             descricao: "Etiam aliquam aliquam"
         },
         {
-            id: 1,
-            numero: "SOFT 0001/2018",
+            id: 2,
+            numero: "SOFT 0002/2018",
             assunto: "In vestibulum dis",
-            interessado: "Danilo Barbosa Correia",
+            interessados: [{ id: 2, name: "Julia Barros Correia" }],
+            descricao: "Etiam aliquam aliquam"
+        },
+        {
+            id: 3,
+            numero: "SOFT 0003/2018",
+            assunto: "In vestibulum dis",
+            interessados: [{ id: 3, name: "Julia Barros Correia" }],
             descricao: "Etiam aliquam aliquam"
         }
     ])
-
+    const [process, setProcess] = useState({})
 
     return (
         <>
@@ -39,27 +44,26 @@ export default function Processos() {
                 <div className="page-content">
                     <div className="flex search-container">
                         <SearchBar type="search"> </SearchBar>
-                        <FormWindow isHome={false}></FormWindow>
+                        <FormWindow isHome={false} processes={processes} setProcesses={setProcesses} process={process} setProcess={setProcess}></FormWindow>
 
                     </div>
                     <div className="card-list">
                         {processes.map(process => (
-                            <Box>
+                            <Box key={process.id}>
                                 <Card
                                     numero={process.numero}
                                     assunto={process.assunto}
-                                    interessado={process.interessado}
-                                    descricao={process.descricao}>
+                                    interessados={process.interessados}
+                                    descricao={process.descricao}
+                                >
                                 </Card>
                             </Box>
-
                         ))}
                     </div>
+
                 </div>
-
+                <ProcessDetails></ProcessDetails>
             </div>
-
-
         </>
     )
 }
