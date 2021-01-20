@@ -4,7 +4,7 @@ import Card from "../components/card";
 import "../pages/processos.css";
 import FormWindow from "../containers/formwindow";
 import { Box } from '@material-ui/core';
-import ProcessDetails from "../components/processdetails";
+//import ProcessDetails from "../components/processdetails";
 
 
 export default function Processos() {
@@ -44,7 +44,7 @@ export default function Processos() {
                 <div className="page-content">
                     <div className="flex search-container">
                         <SearchBar type="search"> </SearchBar>
-                        <FormWindow isHome={false} processes={processes} setProcesses={setProcesses} process={process} setProcess={setProcess}></FormWindow>
+                        <FormWindow  isHome={false} processes={processes} setProcesses={setProcesses} process={process} setProcess={setProcess}></FormWindow>
 
                     </div>
                     <div className="card-list">
@@ -62,7 +62,7 @@ export default function Processos() {
                     </div>
 
                 </div>
-                <ProcessDetails></ProcessDetails>
+                
             </div>
         </>
     )

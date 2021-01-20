@@ -10,7 +10,7 @@ export default function SearchBar() {
         <>
             <OutlinedInput className="searchbar"
             
-                placeholder="Pesquise por uma infomração do processo"
+                placeholder="Pesquise por uma informação do processo"
                 fullWidth
                 endAdornment=
                 {<InputAdornment position="end">

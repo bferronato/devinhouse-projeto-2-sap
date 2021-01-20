@@ -1,4 +1,5 @@
-import "../components/card.css";
+
+import { Typography, Box, Paper } from "@material-ui/core";
 
 
 export default function Card(props) {
@@ -6,31 +7,19 @@ export default function Card(props) {
     console.log(interessados)
 
     return (
+        <>
+            <Box display="flex" flexWrap="wrap" component={Paper} marginTop={3} elevation={3}>
 
-        <div className="card">
+                <Box><img style={{padding: 10, width:70, height:70}} src="#" alt="" className="" /></Box>
+                <Box m={2}><Typography gutterBottom>Número</Typography><Typography gutterBottom>{numero}</Typography></Box>
+                <Box m={2}> <Typography gutterBottom>Assunto</Typography><Typography gutterBottom>{assunto}</Typography></Box>
+                <Box m={2}><Typography gutterBottom>Interessado</Typography>{interessados.map(interessado => (
+                    <Typography gutterBottom key={interessado.id}>{interessado.name}</Typography>
+                ))}</Box>
+                <Box m={2}><Typography gutterBottom>Descrição</Typography><Typography gutterBottom>{descricao}</Typography></Box>
+            </Box>
 
-
-            <div style={{width:"10%"}}><img src="#" alt="" className="" /></div>
-            <div style={{width:"20%"}}><p>Número</p><p>{numero}</p></div>
-            <div style={{width:"20%"}}><p>Assunto</p><p>{assunto}</p></div>
-            <div style={{width:"30%"}}><p>Interessado</p>{interessados.map(interessado => (
-                <p key={interessado.id}>{interessado.name}</p>
-            ))} </div>
-            <div style={{width:"20%"}}><p>Descrição</p><p>{descricao}</p></div>
-
-        </div>
-
+        </>
     )
 }
 
-{/* {processes.map(process => (
-                            <Box key={process.id}>
-                                <Card
-                                    numero={process.numero}
-                                    assunto={process.assunto}
-                                    interessado={process.interessados}
-                                    descricao={process.descricao}
-                                    >
-                                </Card>
-                            </Box>
-                        ))} */}

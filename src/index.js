@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Home from '../src/pages/home';
-import Processos from "../src/pages/processos"
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import routes from "./routes";
 
 ReactDOM.render(
   <BrowserRouter>
   <Switch>
-  <Route path="/home" exact={true} component={Home} />
-  <Route path="/processos" exact={true} component={Processos} />
-  
-    </Switch>
+      {routes.map(route => (
+        <Route
+          key={route.path}
+          path={route.path}
+          component={route.component}
+          exact={route.exact} />
+      )  
+        )}
+  </Switch>
     </ BrowserRouter>,
   document.getElementById('root')
 );

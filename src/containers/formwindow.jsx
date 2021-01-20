@@ -1,11 +1,14 @@
+import { useHistory } from 'react-router-dom';
 import { useState } from "react";
 import { Link, Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Typography } from '@material-ui/core';
+
 
 export default function FormWindow(props) {
     const { isHome, processes, setProcesses, process, setProcess } = props;
     const [open, setOpen] = useState(false);
     const [interested, setInterested] = useState([{ id: 1, name: "Julia Barros Correia" }, { id: 2, name: "Antônio Ribeiro Fernandes" }])
     const [interest, setInterest] = useState({})
+    const history = useHistory();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -31,7 +34,14 @@ export default function FormWindow(props) {
         ])
     }
 
+    const handleChange = (event) => {
+        const { value, name } = event.target
+        console.log(name, value)
+        setProcess({ ...process, [name]: value })
+    };
+
     const handleAddProcess = () => {
+        
         setProcesses([
             ...processes,
             {
@@ -43,14 +53,9 @@ export default function FormWindow(props) {
         ])
         console.log(processes)
         setOpen(false)
+        history.push("/processos");
+       
     }
-
-    const handleChange = (event) => {
-        const { value, name } = event.target
-        console.log(name, value)
-        setProcess({ ...process, [name]: value })
-    };
-
 
     return (
         <>
@@ -59,6 +64,7 @@ export default function FormWindow(props) {
             }
             <Box component="form" >
                 <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+
                     <DialogTitle id="form-dialog-title">Cadastro de Processo</DialogTitle>
                     <DialogContent>
                         <Grid container spacing={2} direction="column">
@@ -120,11 +126,13 @@ export default function FormWindow(props) {
                         <Button onClick={handleClose} color="primary">
                             Cancelar
                         </Button>
+                       
                         <Button variant="contained" color="primary" onClick={handleAddProcess}>
                             Salvar
                         </Button>
                     </DialogActions>
                 </Dialog>
+               
             </Box>
 
         </>
