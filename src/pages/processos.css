@@ -30,3 +30,13 @@ margin: 40px;
    width: 60%;
    
 }
+
+.details-content {
+   width: 50%;
+   margin-top: 23px;
+   margin-left: 20px;
+}
+
+.card-list {
+   width: 100%;
+}

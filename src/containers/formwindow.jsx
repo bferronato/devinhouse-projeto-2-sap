@@ -4,18 +4,20 @@ import { Link, Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, T
 
 
 export default function FormWindow(props) {
-    const { isHome, processes, setProcesses, process, setProcess } = props;
-    const [open, setOpen] = useState(false);
-    const [interested, setInterested] = useState([{ id: 1, name: "Julia Barros Correia" }, { id: 2, name: "Antônio Ribeiro Fernandes" }])
+    const { isHome, processes, setProcesses, openModal, setOpenModal } = props;
+    const [process, setProcess] = useState({})
+    const [interested, setInterested] = useState([])
     const [interest, setInterest] = useState({})
     const history = useHistory();
 
-    const handleClickOpen = () => {
-        setOpen(true);
+   
 
+    const handleClickOpen = () => {
+        setOpenModal(true);
+       
     };
     const handleClose = () => {
-        setOpen(false);
+        setOpenModal(false);
     };
 
     const handleChangeInterest = (event) => {
@@ -36,8 +38,10 @@ export default function FormWindow(props) {
 
     const handleChange = (event) => {
         const { value, name } = event.target
-        console.log(name, value)
-        setProcess({ ...process, [name]: value })
+        //console.log(name, value)~          
+            setProcess({ ...process, [name]: value })
+       
+        
     };
 
     const handleAddProcess = () => {
@@ -51,8 +55,8 @@ export default function FormWindow(props) {
                 ...process,
             }
         ])
-        console.log(processes)
-        setOpen(false)
+        //console.log(processes)
+        setOpenModal(false)
         history.push("/processos");
        
     }
@@ -63,13 +67,14 @@ export default function FormWindow(props) {
                 : <Box ml={1}><Button onClick={handleClickOpen} variant="outlined">Novo</Button></Box>
             }
             <Box component="form" >
-                <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <Dialog fullWidth open={openModal} onClose={handleClose} aria-labelledby="form-dialog-title">
 
                     <DialogTitle id="form-dialog-title">Cadastro de Processo</DialogTitle>
                     <DialogContent>
                         <Grid container spacing={2} direction="column">
                             <Grid item xs={12}>
                                 <TextField
+                                    required
                                     id="assunto"
                                     label="Assunto"
                                     margin="dense"
@@ -77,6 +82,7 @@ export default function FormWindow(props) {
                                     variant="standard"
                                     fullWidth
                                     name="assunto"
+                                    value={process.assunto}
                                     onChange={handleChange}
                                 />
                             </Grid>
@@ -117,6 +123,7 @@ export default function FormWindow(props) {
                                     variant="standard"
                                     fullWidth
                                     name="descricao"
+                                    value={process.descricao}
                                     onChange={handleChange}
                                 />
                             </Grid>
