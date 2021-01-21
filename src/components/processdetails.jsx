@@ -1,7 +1,7 @@
 import { Grid, Typography, Card, Box, Button } from '@material-ui/core';
 
 export default function ProcessDetails(props) {
-    const { viewProcess, processes, setProcesses, setOpenDetails, setOpenModal } = props
+    const { viewProcess, setProcess, processes, setProcesses, setOpenDetails, setOpenModal, setInterested } = props
     
     const handleRemove = (id) => {
          const result = processes.filter(item => item.id !== id)
@@ -9,9 +9,12 @@ export default function ProcessDetails(props) {
          setOpenDetails("none")
      }
 
-     const handleEditProcess = (process) => {
-         setOpenModal(true)
-        
+     const handleEditProcess = (id) => {
+       const processEditing = processes.find(item => item.id === id)
+        setProcess(processEditing)
+        console.log(processEditing)
+        setInterested(processEditing.interessados)
+        setOpenModal(true)
     }
 
     return (
@@ -56,7 +59,7 @@ export default function ProcessDetails(props) {
                         <Box style={{ marginRight: 5 }}>
                             <Button variant="outlined" onClick={() => handleRemove(viewProcess.id)}>Remover</Button>
                         </Box>
-                        <Button variant="outlined" onClick={() => handleEditProcess(viewProcess)}>Editar</Button>
+                        <Button variant="outlined" onClick={() => handleEditProcess(viewProcess.id)}>Editar</Button>
                     </Grid>
                 </Grid>
             </Box>

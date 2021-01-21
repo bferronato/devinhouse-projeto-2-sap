@@ -30,6 +30,7 @@ export default function Home() {
         }
     ])
     const [process, setProcess] = useState({})
+    const [openModal, setOpenModal] = useState(false)
    
     return (
         <>
@@ -38,7 +39,7 @@ export default function Home() {
                     <div className="title">Busca de processos</div>
                     <SearchBar type="search" placeholder="Pesquise por uma informação do processo"></SearchBar>
                     <Button></Button>
-                    <FormWindow isHome={true} processes={processes} setProcesses={setProcesses} process={process} setProcess={setProcess}></FormWindow>
+                    <FormWindow isHome={true} processes={processes} setProcesses={setProcesses} process={process} setProcess={setProcess} setOpenModal={setOpenModal} openModal={openModal}></FormWindow>
                 </div>
             </div>
 

@@ -35,10 +35,11 @@ export default function Processos() {
             data: "15/08/2001"
         }
     ])
-    const [viewProcess, setViewProcess] = useState({})
+    const [interested, setInterested] = useState([])
     const [openDetails, setOpenDetails] = useState("none")
     const [openModal, setOpenModal] = useState(false)
-    const [process,setProcess] = useState({})
+    const [process, setProcess] = useState({})
+    const [viewProcess, setViewProcess] = useState({})
     return (
         <>
             <div className="container flex">
@@ -57,7 +58,10 @@ export default function Processos() {
                             openModal={openModal}
                             setOpenModal={setOpenModal}
                             process={process}
-                            setProcess={setProcesses}
+                            setProcess={setProcess}
+                            setViewProcess={setViewProcess}
+                            interested={interested}
+                            setInterested={setInterested}
                         >
                         </FormWindow>
 
@@ -67,11 +71,6 @@ export default function Processos() {
                             {processes.map(viewProcess => (
                                 <Box key={viewProcess.id} mt={3}>
                                     <Card
-                                        id={viewProcess.id}
-                                        numero={viewProcess.numero}
-                                        assunto={viewProcess.assunto}
-                                        interessados={viewProcess.interessados}
-                                        descricao={viewProcess.descricao}
                                         setViewProcess={setViewProcess}
                                         viewProcess={viewProcess}
                                         openDetails={openDetails}
@@ -84,14 +83,15 @@ export default function Processos() {
                         <div className="details-content" style={{ display: openDetails }}>
                             <ProcessDetails
                                 viewProcess={viewProcess}
+                                setViewProcess={setViewProcess}
+                                setProcess={setProcess}
                                 processes={processes}
                                 setProcesses={setProcesses}
                                 openDetails={openDetails}
                                 setOpenDetails={setOpenDetails}
                                 openModal={openModal}
                                 setOpenModal={setOpenModal}
-                                process={process}
-                                setProcess={setProcesses}
+                                setInterested={setInterested}
                             >
 
                             </ProcessDetails>

@@ -4,17 +4,17 @@ import { Link, Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, T
 
 
 export default function FormWindow(props) {
-    const { isHome, processes, setProcesses, openModal, setOpenModal } = props;
-    const [process, setProcess] = useState({})
-    const [interested, setInterested] = useState([])
+    const { isHome, processes, setProcesses, openModal, setOpenModal, process, setProcess, setViewProcess, interested, setInterested } = props;
+    //const [process, setProcess] = useState({})
+
     const [interest, setInterest] = useState({})
     const history = useHistory();
 
-   
-
     const handleClickOpen = () => {
         setOpenModal(true);
-       
+        setProcess({})
+        setInterested([])
+
     };
     const handleClose = () => {
         setOpenModal(false);
@@ -39,26 +39,38 @@ export default function FormWindow(props) {
     const handleChange = (event) => {
         const { value, name } = event.target
         //console.log(name, value)~          
-            setProcess({ ...process, [name]: value })
-       
-        
+        setProcess({ ...process, [name]: value })
     };
 
-    const handleAddProcess = () => {
-        
-        setProcesses([
-            ...processes,
-            {
-                id: Math.random().toString(36).substr(2, 9),
-                numero: "SOFT 0001/2018",
-                interessados: interested,
-                ...process,
-            }
-        ])
+    const handleSubmitProcess = (event) => {
+        const existProcess = processes.some(item => item.id === process.id)
+        if (existProcess) {
+            const result = processes.map(item => {
+                if (item.id === process.id) {
+                    
+                    return process
+                }
+                else {
+                    return item
+                }
+            })
+            setProcesses(result)
+            setViewProcess({ id: process.id, assunto: process.assunto, data: process.data, interessados: process.interessados, descricao: process.descricao })
+        } else {
+            setProcesses([
+                ...processes,
+                {
+                    id: Math.random().toString(36).substr(2, 9),
+                    numero: "SOFT 0001/2018",
+                    interessados: interested,
+                    ...process,
+                }
+            ])
+            setProcess({ id: 0, assunto: "", data: "", interessados: [], descricao: "" });
+        }
         //console.log(processes)
         setOpenModal(false)
         history.push("/processos");
-       
     }
 
     return (
@@ -133,13 +145,13 @@ export default function FormWindow(props) {
                         <Button onClick={handleClose} color="primary">
                             Cancelar
                         </Button>
-                       
-                        <Button variant="contained" color="primary" onClick={handleAddProcess}>
+
+                        <Button variant="contained" color="primary" onClick={handleSubmitProcess}>
                             Salvar
                         </Button>
                     </DialogActions>
                 </Dialog>
-               
+
             </Box>
 
         </>
