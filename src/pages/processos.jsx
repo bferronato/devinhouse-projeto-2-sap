@@ -5,41 +5,29 @@ import "../pages/processos.css";
 import FormWindow from "../containers/formwindow";
 import { Box } from '@material-ui/core';
 import ProcessDetails from "../components/processdetails";
+import { useEffect } from "react"
+import ProcessAPI from "../services/process";
 
 
 export default function Processos() {
-
-    const [processes, setProcesses] = useState([
-        {
-            id: 1,
-            numero: "SOFT 0001/2018",
-            assunto: "In vestibulum dis",
-            interessados: [{ id: 1, name: "Julia Barros Correia" }, { id: 2, name: "Pedro Barros Correia" }],
-            descricao: "Etiam aliquam aliquam",
-            data: "15/08/2001"
-        },
-        {
-            id: 2,
-            numero: "SOFT 0002/2018",
-            assunto: "In vestibulum dis",
-            interessados: [{ id: 3, name: "Julia Barros Correia" }],
-            descricao: "Etiam aliquam aliquam",
-            data: "15/08/2001"
-        },
-        {
-            id: 3,
-            numero: "SOFT 0003/2018",
-            assunto: "In vestibulum dis",
-            interessados: [{ id: 4, name: "Maria Joana" }],
-            descricao: "Etiam aliquam aliquam",
-            data: "15/08/2001"
-        }
-    ])
+    const [processes, setProcesses] = useState([])   
     const [interested, setInterested] = useState([])
     const [openDetails, setOpenDetails] = useState("none")
     const [openModal, setOpenModal] = useState(false)
     const [process, setProcess] = useState({})
     const [viewProcess, setViewProcess] = useState({})
+
+    useEffect(() => {
+        loadProcess()
+    }, [])
+
+    const loadProcess = async () => {
+        const processData = await ProcessAPI.searchProcess()
+        console.log(processData)
+        setProcesses(processData)
+    }
+
+
     return (
         <>
             <div className="container flex">
@@ -49,7 +37,9 @@ export default function Processos() {
 
                 <div className="page-content">
                     <div className="flex search-container">
-                        <SearchBar type="search">
+                        <SearchBar type="search"
+                         setProcesses={setProcesses}
+                         >
                         </SearchBar>
                         <FormWindow
                             isHome={false}
@@ -68,7 +58,7 @@ export default function Processos() {
                     </div>
                     <div className="flex">
                         <div className="card-list">
-                            {processes.map(viewProcess => (
+                             {processes.length > 0 ? processes.map(viewProcess => (
                                 <Box key={viewProcess.id} mt={3}>
                                     <Card
                                         setViewProcess={setViewProcess}
@@ -78,7 +68,9 @@ export default function Processos() {
                                     >
                                     </Card>
                                 </Box>
-                            ))}
+                            ))
+                        : "nenhum processo"
+                        }
                         </div>
                         <div className="details-content" style={{ display: openDetails }}>
                             <ProcessDetails

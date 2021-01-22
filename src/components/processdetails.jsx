@@ -12,7 +12,7 @@ export default function ProcessDetails(props) {
      const handleEditProcess = (id) => {
        const processEditing = processes.find(item => item.id === id)
         setProcess(processEditing)
-        console.log(processEditing)
+        //console.log(processEditing)
         setInterested(processEditing.interessados)
         setOpenModal(true)
     }

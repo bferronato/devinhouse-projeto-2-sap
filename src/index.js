@@ -7,6 +7,7 @@ import routes from "./routes";
 
 ReactDOM.render(
   <BrowserRouter>
+  
   <Switch>
       {routes.map(route => (
         <Route
@@ -17,6 +18,7 @@ ReactDOM.render(
       )  
         )}
   </Switch>
+
     </ BrowserRouter>,
   document.getElementById('root')
 );

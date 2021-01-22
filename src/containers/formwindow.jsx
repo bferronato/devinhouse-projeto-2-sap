@@ -1,19 +1,32 @@
 import { useHistory } from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Typography } from '@material-ui/core';
 
 
 export default function FormWindow(props) {
-    const { isHome, processes, setProcesses, openModal, setOpenModal, process, setProcess, setViewProcess, interested, setInterested } = props;
-    //const [process, setProcess] = useState({})
+    const { isHome,
+        processes,
+        setProcesses,
+        openModal,
+        setOpenModal,
+        process,
+        setProcess,
+        setViewProcess,
+        interested,
+        setInterested,
+    } = props;
 
     const [interest, setInterest] = useState({})
     const history = useHistory();
 
+    useEffect(() => {
+        setProcess({ ...process, interessados: interested })
+    }, [interested]);
+
     const handleClickOpen = () => {
         setOpenModal(true);
-        setProcess({})
-        setInterested([])
+        setProcess({ assunto: "", descricao: "" })
+        //setInterested([{ id: "", nome: ""}])
 
     };
     const handleClose = () => {
@@ -22,7 +35,7 @@ export default function FormWindow(props) {
 
     const handleChangeInterest = (event) => {
         const { value, name } = event.target
-        console.log(name, value)
+        //console.log(name, value)
         setInterest({ ...interest, [name]: value })
     };
 
@@ -38,16 +51,19 @@ export default function FormWindow(props) {
 
     const handleChange = (event) => {
         const { value, name } = event.target
-        //console.log(name, value)~          
+        //console.log(name, value)   
         setProcess({ ...process, [name]: value })
     };
 
     const handleSubmitProcess = (event) => {
+        
         const existProcess = processes.some(item => item.id === process.id)
+      
         if (existProcess) {
+            console.log("processo existe")
+            console.log(process)
             const result = processes.map(item => {
                 if (item.id === process.id) {
-                    
                     return process
                 }
                 else {
@@ -55,8 +71,17 @@ export default function FormWindow(props) {
                 }
             })
             setProcesses(result)
-            setViewProcess({ id: process.id, assunto: process.assunto, data: process.data, interessados: process.interessados, descricao: process.descricao })
+            setViewProcess({
+                id: process.id,
+                numero: process.numero,
+                assunto: process.assunto,
+                data: process.data,
+                interessados: interested,
+                descricao: process.descricao
+            })
         } else {
+            console.log("processo não existe")
+            console.log(process)
             setProcesses([
                 ...processes,
                 {
@@ -67,6 +92,7 @@ export default function FormWindow(props) {
                 }
             ])
             setProcess({ id: 0, assunto: "", data: "", interessados: [], descricao: "" });
+            setInterested([])
         }
         //console.log(processes)
         setOpenModal(false)
@@ -100,8 +126,10 @@ export default function FormWindow(props) {
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography>Interessados</Typography>
-                                {interested.map(interest => (
-                                    <Typography key={interest.id}> {interest.name}</Typography>
+                                {interested.map(item => (
+                                    <Typography key={item.id}>
+                                        {item.name}
+                                    </Typography>
                                 ))}
                             </Grid>
                             <Grid container item alignItems="flex-end">
