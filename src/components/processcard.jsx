@@ -4,12 +4,10 @@ import { Typography, Grid, Card, CardActionArea, CardContent } from "@material-u
 
 export default function ProcessCard(props) {
     const { viewProcess, setViewProcess, setOpenDetails } = props
-    //console.log(interessados)
 
-    const handleViewProcess = (viewProcess) => {
-        setViewProcess(viewProcess)
+    const handleViewProcess = (obj) => {
+        setViewProcess(obj)
         setOpenDetails("block")
-
     }
 
 
@@ -23,7 +21,7 @@ export default function ProcessCard(props) {
                             <Grid item xs={12} sm={12} md={3} lg={3} ><Typography >Número</Typography><Typography >{viewProcess.numero}</Typography></Grid>
                             <Grid item xs={12} sm={12} md={3} lg={3}> <Typography >Assunto</Typography><Typography >{viewProcess.assunto}</Typography></Grid>
                             <Grid item xs={12} sm={12} md={2} lg={3}><Typography >Interessado</Typography>{viewProcess.interessados.map(interessado => (
-                                <Typography key={interessado.id}>{interessado.name}</Typography>
+                                <Typography key={interessado.id}>{interessado.nome}</Typography>
                             ))}</Grid>
                             <Grid item xs={12} sm={12} md={2} lg={2}><Typography >Descrição</Typography><Typography >{viewProcess.descricao}</Typography></Grid>
                         </Grid>

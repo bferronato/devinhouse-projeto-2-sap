@@ -1,4 +1,5 @@
 import { Grid, Typography, Card, Box, Button } from '@material-ui/core';
+import ProcessAPI from "../services/process";
 
 export default function ProcessDetails(props) {
     const { viewProcess, setProcess, processes, setProcesses, setOpenDetails, setOpenModal, setInterested } = props
@@ -7,12 +8,12 @@ export default function ProcessDetails(props) {
          const result = processes.filter(item => item.id !== id)
          setProcesses(result)
          setOpenDetails("none")
+         ProcessAPI.deleteProcess(id)
      }
 
      const handleEditProcess = (id) => {
        const processEditing = processes.find(item => item.id === id)
         setProcess(processEditing)
-        //console.log(processEditing)
         setInterested(processEditing.interessados)
         setOpenModal(true)
     }
@@ -45,7 +46,7 @@ export default function ProcessDetails(props) {
                         <Typography variant="subtitle1">Interessados</Typography>
 
                         {viewProcess.interessados ? viewProcess.interessados.map(interessado => (
-                            <Typography gutterBottom key={interessado.id}>{interessado.name}</Typography>
+                            <Typography gutterBottom key={interessado.id}>{interessado.nome}</Typography>
                         ))
                             : ""
                         }

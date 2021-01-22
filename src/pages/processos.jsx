@@ -17,15 +17,18 @@ export default function Processos() {
     const [process, setProcess] = useState({})
     const [viewProcess, setViewProcess] = useState({})
 
-    useEffect(() => {
+   useEffect(() => {
         loadProcess()
     }, [])
 
+    useEffect(() => {
+        loadProcess()
+    }, [process])
+
     const loadProcess = async () => {
         const processData = await ProcessAPI.searchProcess()
-        console.log(processData)
         setProcesses(processData)
-    }
+    } 
 
 
     return (
@@ -58,18 +61,18 @@ export default function Processos() {
                     </div>
                     <div className="flex">
                         <div className="card-list">
-                             {processes.length > 0 ? processes.map(viewProcess => (
-                                <Box key={viewProcess.id} mt={3}>
+                             {processes.length > 0 ? processes.map(item => (
+                                <Box key={item.id} mt={3}>
                                     <Card
                                         setViewProcess={setViewProcess}
-                                        viewProcess={viewProcess}
+                                        viewProcess={item}
                                         openDetails={openDetails}
                                         setOpenDetails={setOpenDetails}
                                     >
                                     </Card>
                                 </Box>
                             ))
-                        : "nenhum processo"
+                        : "nenhum processo encontrado"
                         }
                         </div>
                         <div className="details-content" style={{ display: openDetails }}>

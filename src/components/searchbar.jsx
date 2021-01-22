@@ -10,16 +10,17 @@ export default function SearchBar(props) {
 
 
     const [filter, setFilter] = useState()
+    const [isClicked, setClicked] = useState(false)
 
-    const filterData = () => {
-        console.log("filtro", filter)
-    }
+    const searchProcess = async (filter) => {
+        const processData = await ProcessAPI.searchProcess(filter)
+        setProcesses(processData)
+    } 
 
-    useEffect(() => {
-        const result = ProcessAPI.searchProcess(filter)
-        setProcesses(result)
-
+     useEffect(() => {
+        searchProcess(filter)
     }, [filter])
+
 
     return (
         <>
@@ -32,7 +33,7 @@ export default function SearchBar(props) {
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
-                            <IconButton aria-label="pesquisar" onClick={filterData}>
+                            <IconButton aria-label="pesquisar">
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>
@@ -44,26 +45,6 @@ export default function SearchBar(props) {
     )
 
 }
-
-/* const Busca = props => {
-
-    const { filtrarDados } = props;
-
-    const [ filtro, setFiltro ] = useState();
-
-    return (
-        <Grid container spacing={2} >
-            <Grid item xs={11} >
-                <Grid item >
-                    <TextField variant="outlined" onChange={(e) => setFiltro(e.target.value)} size="small">Novo</TextField>
-                    <Button variant="contained" onClick={() => filtrarDados(filtro)}>Buscar</Button>
-                </Grid>
-            </Grid>
-        </Grid>
-    )
-}
-
-export default Busca; */
 
 
 

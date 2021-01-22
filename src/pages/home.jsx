@@ -23,8 +23,6 @@ export default function Home() {
         setProcesses(processData)
     }
 
-
-
     return (
         <>
             <div className="container-home">

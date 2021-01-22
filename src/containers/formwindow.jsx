@@ -1,6 +1,9 @@
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { Link, Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, TextField, Grid, Typography } from '@material-ui/core';
+import ProcessAPI from "../services/process";
+import moment from 'moment';
+
 
 
 export default function FormWindow(props) {
@@ -25,8 +28,8 @@ export default function FormWindow(props) {
 
     const handleClickOpen = () => {
         setOpenModal(true);
-        setProcess({ assunto: "", descricao: "" })
-        //setInterested([{ id: "", nome: ""}])
+        setProcess({ assunto: "", descricao: "", data: moment().format('YYYY-MM-DD') , numero: "SOFT 0001/2018" })
+        setInterested([{ id: 0, nome: ""}]) 
 
     };
     const handleClose = () => {
@@ -40,6 +43,7 @@ export default function FormWindow(props) {
     };
 
     const handleAddToInterested = () => {
+        //console.log(interest)
         setInterested([
             ...interested,
             {
@@ -60,8 +64,6 @@ export default function FormWindow(props) {
         const existProcess = processes.some(item => item.id === process.id)
       
         if (existProcess) {
-            console.log("processo existe")
-            console.log(process)
             const result = processes.map(item => {
                 if (item.id === process.id) {
                     return process
@@ -79,18 +81,17 @@ export default function FormWindow(props) {
                 interessados: interested,
                 descricao: process.descricao
             })
+            ProcessAPI.updateProcess(process, process.id)
         } else {
-            console.log("processo não existe")
-            console.log(process)
             setProcesses([
                 ...processes,
                 {
                     id: Math.random().toString(36).substr(2, 9),
-                    numero: "SOFT 0001/2018",
                     interessados: interested,
                     ...process,
                 }
             ])
+            ProcessAPI.insertProcess(process)
             setProcess({ id: 0, assunto: "", data: "", interessados: [], descricao: "" });
             setInterested([])
         }
@@ -128,7 +129,7 @@ export default function FormWindow(props) {
                                 <Typography>Interessados</Typography>
                                 {interested.map(item => (
                                     <Typography key={item.id}>
-                                        {item.name}
+                                        {item.nome}
                                     </Typography>
                                 ))}
                             </Grid>
@@ -141,7 +142,7 @@ export default function FormWindow(props) {
                                         size="small"
                                         variant="standard"
                                         fullWidth
-                                        name="name"
+                                        name="nome"
                                         onChange={handleChangeInterest}
                                     />
                                 </Grid>
