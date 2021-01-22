@@ -12,6 +12,7 @@ export default function Home() {
     const [process, setProcess] = useState({})
     const [openModal, setOpenModal] = useState(false)
     const [interested, setInterested] = useState([])
+    const searchValue = ""
 
     useEffect(() => {
         loadProcess()
@@ -32,6 +33,7 @@ export default function Home() {
                     type="search" 
                     placeholder="Pesquise por uma informação do processo"
                     setProcesses={setProcesses}
+                    searchValue={searchValue}
                     >
 
                     </SearchBar>

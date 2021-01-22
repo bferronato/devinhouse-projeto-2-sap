@@ -4,36 +4,48 @@ import { TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { useEffect, useState } from 'react';
 import ProcessAPI from "../services/process";
+import { Redirect } from 'react-router-dom'
 
 export default function SearchBar(props) {
-    const { setProcesses } = props
+    const { setProcesses, searchValue } = props
 
 
-    const [filter, setFilter] = useState()
-    const [isClicked, setClicked] = useState(false)
+    const [filter, setFilter] = useState(searchValue)
+    const [isRedirect, setIsRedirect] = useState(false)
 
-    const searchProcess = async (filter) => {
-        const processData = await ProcessAPI.searchProcess(filter)
-        setProcesses(processData)
-    } 
+    const onChangeSearch = (e) => {
+        setFilter(e.target.value)
+    }
 
-     useEffect(() => {
-        searchProcess(filter)
-    }, [filter])
+    const onClickSearch = (e) => {
+        e.preventDefault()
+        setIsRedirect(true)
+    }
+
+    // const searchProcess = async (filter) => {
+    //     const processData = await ProcessAPI.searchProcess(filter)
+    //     setProcesses(processData)
+    // } 
+
+    //  useEffect(() => {
+    //     searchProcess(filter)
+    // }, [filter])
 
 
     return (
         <>
+        {isRedirect && <Redirect to={`/processos/${filter}`}  />}
             <TextField
                 variant="outlined"
                 size="small"
                 placeholder="Pesquise por uma informação do processo"
                 fullWidth
-                onChange={(e) => setFilter(e.target.value)}
+                value={filter}
+                onChange={onChangeSearch}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
-                            <IconButton aria-label="pesquisar">
+                            <IconButton  onClick={onClickSearch} aria-label="pesquisar">
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>

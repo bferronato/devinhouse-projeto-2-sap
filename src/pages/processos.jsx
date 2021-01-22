@@ -7,6 +7,8 @@ import { Box } from '@material-ui/core';
 import ProcessDetails from "../components/processdetails";
 import { useEffect } from "react"
 import ProcessAPI from "../services/process";
+import { Redirect, useParams } from "react-router-dom";
+
 
 
 export default function Processos() {
@@ -17,16 +19,24 @@ export default function Processos() {
     const [process, setProcess] = useState({})
     const [viewProcess, setViewProcess] = useState({})
 
+    const { searchValue } = useParams();
+
    useEffect(() => {
+       if(searchValue) {
+        loadProcess(searchValue)
+       } else {
         loadProcess()
+       }
     }, [])
 
     useEffect(() => {
+        if(!searchValue) {
         loadProcess()
+        }
     }, [process])
 
-    const loadProcess = async () => {
-        const processData = await ProcessAPI.searchProcess()
+    const loadProcess = async (searchText) => {
+        const processData = await ProcessAPI.searchProcess(searchText)
         setProcesses(processData)
     } 
 
@@ -42,6 +52,7 @@ export default function Processos() {
                     <div className="flex search-container">
                         <SearchBar type="search"
                          setProcesses={setProcesses}
+                         searchValue={searchValue}
                          >
                         </SearchBar>
                         <FormWindow

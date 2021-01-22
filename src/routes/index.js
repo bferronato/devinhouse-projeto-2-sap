@@ -9,11 +9,14 @@ const routes = [
         
         
     },
-
     {
-        path: "/processos",
+        path: "/processos/",
         component: Processos,
         exact: true 
+    },
+    {
+        path: "/processos/:searchValue",
+        component: Processos,
     }
 ]
 
