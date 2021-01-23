@@ -7,7 +7,7 @@ import { Box } from '@material-ui/core';
 import ProcessDetails from "../components/processdetails";
 import { useEffect } from "react"
 import ProcessAPI from "../services/process";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 
@@ -18,7 +18,6 @@ export default function Processos() {
     const [openModal, setOpenModal] = useState(false)
     const [process, setProcess] = useState({})
     const [viewProcess, setViewProcess] = useState({})
-
     const { searchValue } = useParams();
 
    useEffect(() => {
@@ -83,7 +82,7 @@ export default function Processos() {
                                     </Card>
                                 </Box>
                             ))
-                        : "nenhum processo encontrado"
+                        : <Box pt={4}> Nenhum processo encontrado </Box>
                         }
                         </div>
                         <div className="details-content" style={{ display: openDetails }}>
@@ -99,7 +98,6 @@ export default function Processos() {
                                 setOpenModal={setOpenModal}
                                 setInterested={setInterested}
                             >
-
                             </ProcessDetails>
                         </div>
                     </div>

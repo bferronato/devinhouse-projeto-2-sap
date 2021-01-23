@@ -28,8 +28,8 @@ export default function FormWindow(props) {
 
     const handleClickOpen = () => {
         setOpenModal(true);
-        setProcess({ assunto: "", descricao: "", data: moment().format('YYYY-MM-DD') , numero: "SOFT 0001/2018" })
-        setInterested([{ id: 0, nome: ""}]) 
+        setProcess({ assunto: "", descricao: "", data: moment().format('YYYY-MM-DD'), numero: "SOFT 0001/2018" })
+        setInterested([{ id: 0, nome: "" }])
 
     };
     const handleClose = () => {
@@ -60,9 +60,9 @@ export default function FormWindow(props) {
     };
 
     const handleSubmitProcess = (event) => {
-        
+
         const existProcess = processes.some(item => item.id === process.id)
-      
+
         if (existProcess) {
             const result = processes.map(item => {
                 if (item.id === process.id) {
@@ -103,7 +103,14 @@ export default function FormWindow(props) {
     return (
         <>
             {isHome ? <p className="subtitle">Voce pode criar um novo processo <Link href="#" onClick={handleClickOpen}> clicando aqui </Link></p>
-                : <Box ml={1}><Button onClick={handleClickOpen} variant="outlined">Novo</Button></Box>
+                : <Box ml={1}>
+                    <Button
+                        onClick={handleClickOpen}
+                        variant="contained"
+                        style={{ fontSize: '14px' }}
+                    >Novo
+                    </Button>
+                </Box>
             }
             <Box component="form" >
                 <Dialog fullWidth open={openModal} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -117,16 +124,16 @@ export default function FormWindow(props) {
                                     id="assunto"
                                     label="Assunto"
                                     margin="dense"
-                                    size="small"
                                     variant="standard"
                                     fullWidth
                                     name="assunto"
                                     value={process.assunto}
                                     onChange={handleChange}
+                                    style={{ fontSize: '14px' }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography>Interessados</Typography>
+                                <Typography style={{ fontSize: '14px', color: "#757575" }}>Interessados</Typography>
                                 {interested.map(item => (
                                     <Typography key={item.id}>
                                         {item.nome}
@@ -139,11 +146,11 @@ export default function FormWindow(props) {
                                         id="name"
                                         label="Novo Interessado"
                                         margin="dense"
-                                        size="small"
                                         variant="standard"
                                         fullWidth
                                         name="nome"
                                         onChange={handleChangeInterest}
+                                        style={{ fontSize: '14px' }}
                                     />
                                 </Grid>
                                 <Grid item xs={4}>
@@ -160,22 +167,32 @@ export default function FormWindow(props) {
                                     id="descricao"
                                     label="Descrição"
                                     margin="dense"
-                                    size="small"
                                     variant="standard"
                                     fullWidth
                                     name="descricao"
                                     value={process.descricao}
                                     onChange={handleChange}
+                                    style={{ fontSize: '14px' }}
                                 />
                             </Grid>
                         </Grid>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="primary">
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            style={{ fontSize: '14px' }}
+                            onClick={handleClose}
+                        >
                             Cancelar
                         </Button>
 
-                        <Button variant="contained" color="primary" onClick={handleSubmitProcess}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            style={{ fontSize: '14px' }}
+                            onClick={handleSubmitProcess}
+                        >
                             Salvar
                         </Button>
                     </DialogActions>

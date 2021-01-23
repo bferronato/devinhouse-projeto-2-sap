@@ -18,49 +18,66 @@ export default function ProcessDetails(props) {
         setOpenModal(true)
     }
 
+    const handleCloseDetails = () => {
+        setOpenDetails("none")
+    }
+
     return (
         <Card >
             <Box p={2}>
                 <Grid container spacing={2} >
                     <Grid style={{ position: "relative" }} container item xs={12} spacing={2}>
-                        <Box style={{ position: "absolute", right: 0 }}>x</Box>
+                        <Button onClick={handleCloseDetails} style={{ position: "absolute", right: 0 }}>x</Button>
                         <Grid item xs={12} sm={12} md={3} lg={3}><img style={{ width: 70, height: 70 }} src="#" alt="" className="" /></Grid>
                         <Grid container item xs={12} sm={12} md={9} lg={9} >
                             <Grid container item xs={12} >
                                 <Grid item xs={12} sm={12} md={5} lg={5}>
-                                    <Typography variant="subtitle1">Processo</Typography>
-                                    <Typography variant="body1">{viewProcess.numero}</Typography>
+                                    <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Processo</Typography>
+                                    <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.numero}</Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={6} lg={6}>
-                                    <Typography variant="subtitle1">Data</Typography>
-                                    <Typography variant="body1">{viewProcess.data}</Typography>
+                                    <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Data</Typography>
+                                    <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.data}</Typography>
                                 </Grid>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography variant="subtitle1">Assunto</Typography>
-                                <Typography variant="body1">{viewProcess.assunto}</Typography>
+                                <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Assunto</Typography>
+                                <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.assunto}</Typography>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="subtitle1">Interessados</Typography>
+                        <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Interessados</Typography>
 
                         {viewProcess.interessados ? viewProcess.interessados.map(interessado => (
-                            <Typography gutterBottom key={interessado.id}>{interessado.nome}</Typography>
+                            <Typography  key={interessado.id}>{interessado.nome}</Typography>
                         ))
                             : ""
                         }
 
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="subtitle1">Descrição</Typography>
-                        <Typography variant="body1">{viewProcess.descricao}</Typography>
+                        <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Descrição</Typography>
+                        <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.descricao}</Typography>
                     </Grid>
                     <Grid container justify="flex-end" >
                         <Box style={{ marginRight: 5 }}>
-                            <Button variant="outlined" onClick={() => handleRemove(viewProcess.id)}>Remover</Button>
+                            <Button 
+                            variant="outlined" 
+                            color="primary"
+                            style={{ fontSize: '14px' }} 
+                            onClick={() => handleRemove(viewProcess.id)}
+                            >
+                            Remover
+                            </Button>
                         </Box>
-                        <Button variant="outlined" onClick={() => handleEditProcess(viewProcess.id)}>Editar</Button>
+                        <Button 
+                        variant="contained" 
+                        color="primary"
+                        style={{ fontSize: '14px' }}
+                        onClick={() => handleEditProcess(viewProcess.id)}
+                        >
+                        Editar</Button>
                     </Grid>
                 </Grid>
             </Box>

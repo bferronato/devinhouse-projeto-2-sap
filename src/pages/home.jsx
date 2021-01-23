@@ -35,9 +35,7 @@ export default function Home() {
                     setProcesses={setProcesses}
                     searchValue={searchValue}
                     >
-
-                    </SearchBar>
-                    <Button></Button>
+                    </SearchBar>    
                     <FormWindow 
                     isHome={true} 
                     processes={processes}

@@ -2,12 +2,11 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { useEffect, useState } from 'react';
-import ProcessAPI from "../services/process";
+import { useState } from 'react';
 import { Redirect } from 'react-router-dom'
 
 export default function SearchBar(props) {
-    const { setProcesses, searchValue } = props
+    const { searchValue } = props
 
 
     const [filter, setFilter] = useState(searchValue)
