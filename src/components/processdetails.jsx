@@ -1,14 +1,29 @@
-import { Grid, Typography, Card, Box, Button } from '@material-ui/core';
+import { Grid, Typography, Card, Box, IconButton, Button } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import ProcessAPI from "../services/process";
 
+
 export default function ProcessDetails(props) {
-    const { viewProcess, setProcess, processes, setProcesses, setOpenDetails, setOpenModal, setInterested } = props
+    const { viewProcess, 
+        setProcess, 
+        processes, 
+        setProcesses, 
+        setOpenDetails, 
+        setOpenModal, 
+        setInterested,
+        openMessage,
+        setOpenMessage,
+        messageText,
+        setMessageText
+         } = props
     
     const handleRemove = (id) => {
-         const result = processes.filter(item => item.id !== id)
-         setProcesses(result)
-         setOpenDetails("none")
-         ProcessAPI.deleteProcess(id)
+        const result = processes.filter(item => item.id !== id)
+        setProcesses(result)
+        setOpenDetails("none")
+        ProcessAPI.deleteProcess(id)
+        setMessageText("Removido com sucesso!")
+        setOpenMessage(true)
      }
 
      const handleEditProcess = (id) => {
@@ -16,6 +31,7 @@ export default function ProcessDetails(props) {
         setProcess(processEditing)
         setInterested(processEditing.interessados)
         setOpenModal(true)
+        
     }
 
     const handleCloseDetails = () => {
@@ -23,19 +39,20 @@ export default function ProcessDetails(props) {
     }
 
     return (
+        <>
         <Card >
             <Box p={2}>
                 <Grid container spacing={2} >
                     <Grid style={{ position: "relative" }} container item xs={12} spacing={2}>
-                        <Button onClick={handleCloseDetails} style={{ position: "absolute", right: 0 }}>x</Button>
-                        <Grid item xs={12} sm={12} md={3} lg={3}><img style={{ width: 70, height: 70 }} src="#" alt="" className="" /></Grid>
-                        <Grid container item xs={12} sm={12} md={9} lg={9} >
+                        <IconButton onClick={handleCloseDetails} style={{ position: "absolute", right: 0 }}><CloseIcon /></IconButton>
+                        <Grid item xs={12} sm={12} md={12} lg={3}><img style={{ width: 84, height: 84 }} src="img/placeholder.png"/></Grid>
+                        <Grid container item xs={12} sm={12} md={12} lg={9} >
                             <Grid container item xs={12} >
-                                <Grid item xs={12} sm={12} md={5} lg={5}>
+                                <Grid item xs={12} sm={12} md={12} lg={5}>
                                     <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Processo</Typography>
                                     <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.numero}</Typography>
                                 </Grid>
-                                <Grid item xs={12} sm={12} md={6} lg={6}>
+                                <Grid item xs={12} sm={12} md={12} lg={6}>
                                     <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Data</Typography>
                                     <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.data}</Typography>
                                 </Grid>
@@ -82,6 +99,6 @@ export default function ProcessDetails(props) {
                 </Grid>
             </Box>
         </Card>
-
+</>
     )
 }

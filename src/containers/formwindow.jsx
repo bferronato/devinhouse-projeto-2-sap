@@ -102,8 +102,8 @@ export default function FormWindow(props) {
 
     return (
         <>
-            {isHome ? <p className="subtitle">Voce pode criar um novo processo <Link href="#" onClick={handleClickOpen}> clicando aqui </Link></p>
-                : <Box ml={1}>
+            {isHome ? <Box mt={2}> <Typography variant="h6"> Voce pode criar um novo processo <Link href="#" onClick={handleClickOpen}> clicando aqui </Link></Typography></Box>
+                : <Box ml={2}>
                     <Button
                         onClick={handleClickOpen}
                         variant="contained"

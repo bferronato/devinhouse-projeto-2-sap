@@ -33,7 +33,7 @@ export default function SearchBar(props) {
 
     return (
         <>
-        {isRedirect && <Redirect to={`/processos/${filter}`}  />}
+        {isRedirect && <Redirect to={`/processos/${filter}`} />}
             <TextField
                 variant="outlined"
                 size="small"

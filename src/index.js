@@ -4,10 +4,24 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import routes from "./routes";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    fontSize: 12,
+    fontFamily: [
+      'Montserrat',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif'
+    ].join(','),
+  }
+});
 
 ReactDOM.render(
-  <BrowserRouter>
-  
+  <ThemeProvider theme={theme}>
+  <BrowserRouter> 
   <Switch>
       {routes.map(route => (
         <Route
@@ -18,8 +32,8 @@ ReactDOM.render(
       )  
         )}
   </Switch>
-
-    </ BrowserRouter>,
+    </ BrowserRouter>
+    </ThemeProvider>,
   document.getElementById('root')
 );
 

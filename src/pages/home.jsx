@@ -2,9 +2,9 @@ import { useState } from "react";
 import SearchBar from "../components/searchbar";
 import "../pages/home.css";
 import FormWindow from "../containers/formwindow"
-import Button from '@material-ui/core/Button';
 import { useEffect } from "react"
 import ProcessAPI from "../services/process";
+import { Typography, Box } from "@material-ui/core";
 
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
         <>
             <div className="container-home">
                 <div className="content-home">
-                    <div className="title">Busca de processos</div>
+                    <Box mb={2}><Typography variant="h5" color="primary">Busca de processos</Typography></Box>
                     <SearchBar 
                     type="search" 
                     placeholder="Pesquise por uma informação do processo"
