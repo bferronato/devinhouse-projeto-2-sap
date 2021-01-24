@@ -28,7 +28,7 @@ export default function Home() {
         <>
             <div className="container-home">
                 <div className="content-home">
-                    <Box mb={2}><Typography variant="h5" color="primary">Busca de processos</Typography></Box>
+                    <Box mb={2}><Typography style={{ fontSize: '24px' }} variant="h5" color="primary">Busca de processos</Typography></Box>
                     <SearchBar 
                     type="search" 
                     placeholder="Pesquise por uma informação do processo"

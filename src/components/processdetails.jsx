@@ -10,10 +10,8 @@ export default function ProcessDetails(props) {
         setProcesses, 
         setOpenDetails, 
         setOpenModal, 
-        setInterested,
-        openMessage,
+        setInterested,  
         setOpenMessage,
-        messageText,
         setMessageText
          } = props
     
@@ -50,16 +48,16 @@ export default function ProcessDetails(props) {
                             <Grid container item xs={12} >
                                 <Grid item xs={12} sm={12} md={12} lg={5}>
                                     <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Processo</Typography>
-                                    <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.numero}</Typography>
+                                    <Typography variant="body1" style={{ fontSize: '24px' }}>{viewProcess.numero}</Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} lg={6}>
                                     <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Data</Typography>
-                                    <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.data}</Typography>
+                                    <Typography variant="body1" style={{ fontSize: '24px' }}>{viewProcess.data}</Typography>
                                 </Grid>
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Assunto</Typography>
-                                <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.assunto}</Typography>
+                                <Typography variant="body1" style={{ fontSize: '24px' }}>{viewProcess.assunto}</Typography>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -67,14 +65,14 @@ export default function ProcessDetails(props) {
                         <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Interessados</Typography>
 
                         {viewProcess.interessados ? viewProcess.interessados.map(interessado => (
-                            <Typography  key={interessado.id}>{interessado.nome}</Typography>
+                            <Typography style={{ fontSize: '16px' }}  key={interessado.id}>{interessado.nome}</Typography>
                         ))
                             : ""
                         }
 
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Descrição</Typography>
+                        <Typography noWrap variant="subtitle1" style={{ fontSize: '14px', fontWeight: "bold" }}>Descrição</Typography>
                         <Typography variant="body1" style={{ fontSize: '16px' }}>{viewProcess.descricao}</Typography>
                     </Grid>
                     <Grid container justify="flex-end" >

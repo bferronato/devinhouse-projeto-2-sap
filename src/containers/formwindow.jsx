@@ -17,6 +17,8 @@ export default function FormWindow(props) {
         setViewProcess,
         interested,
         setInterested,
+        setOpenMessage,
+        setMessageText
     } = props;
 
     const [interest, setInterest] = useState({})
@@ -29,7 +31,7 @@ export default function FormWindow(props) {
     const handleClickOpen = () => {
         setOpenModal(true);
         setProcess({ assunto: "", descricao: "", data: moment().format('YYYY-MM-DD'), numero: "SOFT 0001/2018" })
-        setInterested([{ id: 0, nome: "" }])
+        setInterested([])
 
     };
     const handleClose = () => {
@@ -59,7 +61,7 @@ export default function FormWindow(props) {
         setProcess({ ...process, [name]: value })
     };
 
-    const handleSubmitProcess = (event) => {
+    const sendProcess = () => {
 
         const existProcess = processes.some(item => item.id === process.id)
 
@@ -82,6 +84,8 @@ export default function FormWindow(props) {
                 descricao: process.descricao
             })
             ProcessAPI.updateProcess(process, process.id)
+            setMessageText("Editado com sucesso!")
+            setOpenMessage(true)
         } else {
             setProcesses([
                 ...processes,
@@ -92,17 +96,28 @@ export default function FormWindow(props) {
                 }
             ])
             ProcessAPI.insertProcess(process)
+            setMessageText("Cadastrado com sucesso!")
+            setOpenMessage(true)
             setProcess({ id: 0, assunto: "", data: "", interessados: [], descricao: "" });
             setInterested([])
+            
         }
         //console.log(processes)
         setOpenModal(false)
         history.push("/processos");
+        
+    }
+
+    const handleSubmitProcess = (e) => {
+        e.preventDefault()
+        if(interested.length > 0) {
+            sendProcess()
+        }
     }
 
     return (
         <>
-            {isHome ? <Box mt={2}> <Typography variant="h6"> Voce pode criar um novo processo <Link href="#" onClick={handleClickOpen}> clicando aqui </Link></Typography></Box>
+            {isHome ? <Box mt={2}> <Typography style={{ fontSize: '16px' }}> Voce pode criar um novo processo <Link href="#" onClick={handleClickOpen}> clicando aqui </Link></Typography></Box>
                 : <Box ml={2}>
                     <Button
                         onClick={handleClickOpen}
@@ -112,19 +127,22 @@ export default function FormWindow(props) {
                     </Button>
                 </Box>
             }
-            <Box component="form" >
+            
+            <Box>
                 <Dialog fullWidth open={openModal} onClose={handleClose} aria-labelledby="form-dialog-title">
 
                     <DialogTitle id="form-dialog-title">Cadastro de Processo</DialogTitle>
+                    <form onSubmit={handleSubmitProcess}>
                     <DialogContent>
                         <Grid container spacing={2} direction="column">
                             <Grid item xs={12}>
                                 <TextField
+                                    autoFocus
                                     required
                                     id="assunto"
                                     label="Assunto"
                                     margin="dense"
-                                    variant="standard"
+                                    type="text"
                                     fullWidth
                                     name="assunto"
                                     value={process.assunto}
@@ -143,6 +161,7 @@ export default function FormWindow(props) {
                             <Grid container item alignItems="flex-end">
                                 <Grid item xs={8}>
                                     <TextField
+                                        
                                         id="name"
                                         label="Novo Interessado"
                                         margin="dense"
@@ -161,9 +180,16 @@ export default function FormWindow(props) {
                                         </Button>
                                     </Box>
                                 </Grid>
+                            <Grid item xs={12}>
+                                {interested.length <= 0 ? <Typography color="error">Nenhum interessado cadastrado</Typography> : ""}
+                            </Grid>
                             </Grid>
                             <Grid item xs={12}>
+                                
                                 <TextField
+                                    autoFocus
+                                    type="text"
+                                    required
                                     id="descricao"
                                     label="Descrição"
                                     margin="dense"
@@ -172,9 +198,11 @@ export default function FormWindow(props) {
                                     name="descricao"
                                     value={process.descricao}
                                     onChange={handleChange}
-                                    style={{ fontSize: '14px' }}
+                                    style={{ fontSize: '14px' }} 
+                                    multiline                                  
                                 />
                             </Grid>
+                           
                         </Grid>
                     </DialogContent>
                     <DialogActions>
@@ -191,11 +219,13 @@ export default function FormWindow(props) {
                             variant="contained"
                             color="primary"
                             style={{ fontSize: '14px' }}
-                            onClick={handleSubmitProcess}
+                            type="submit"
+                            
                         >
                             Salvar
                         </Button>
                     </DialogActions>
+                    </form>
                 </Dialog>
 
             </Box>

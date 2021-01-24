@@ -49,16 +49,16 @@ export default function Processos() {
                     <Grid item xs={12} sm={12} md={12} lg={2}><Typography variant="h5">
                         Busca de Processos</Typography>
                     </Grid>
-                    <Grid container item xs={12} >
+                    <Grid container item xs={12} sm={12} md={12} lg={10}>
                         <Grid container item xs={12}>
-                            <Grid item xs={6}>
+                            <Grid item xs={11} sm={9} md={6} lg={4}>
                                 <SearchBar
                                     setProcesses={setProcesses}
                                     searchValue={searchValue}
                                 >
                                 </SearchBar>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={1} sm={1} md={1} lg={1}>
                                 <FormWindow
                                     isHome={false}
                                     processes={processes}
@@ -70,12 +70,14 @@ export default function Processos() {
                                     setViewProcess={setViewProcess}
                                     interested={interested}
                                     setInterested={setInterested}
+                                    setOpenMessage={setOpenMessage}
+                                    setMessageText={setMessageText}
                                 >
                                 </FormWindow>
                             </Grid>
                         </Grid>
-                        <Box className="flex">
-                            <Box item>
+                        <Box className="flex" style={{ width:"100%"}}>
+                            <Box item style={{ width:"100%"}}>
                                 {processes.length > 0 ? processes.map(item => (
                                     <Box key={item.id} mt={3}>
                                         <Card
