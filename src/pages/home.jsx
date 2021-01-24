@@ -1,10 +1,10 @@
-import { useState } from "react";
-import SearchBar from "../components/searchbar";
-import "../pages/home.css";
-import FormWindow from "../containers/formwindow"
+import { useState } from "react"
 import { useEffect } from "react"
-import ProcessAPI from "../services/process";
-import { Typography, Box } from "@material-ui/core";
+import SearchBar from "../components/searchbar"
+import "../pages/home.css"
+import FormWindow from "../containers/formwindow"
+import ProcessAPI from "../services/process"
+import { Typography, Box } from "@material-ui/core"
 
 
 export default function Home() {
@@ -13,6 +13,8 @@ export default function Home() {
     const [openModal, setOpenModal] = useState(false)
     const [interested, setInterested] = useState([])
     const searchValue = ""
+    const [openMessage, setOpenMessage] = useState(false);
+    const [messageText, setMessageText] = useState("")
 
     useEffect(() => {
         loadProcess()
@@ -46,6 +48,10 @@ export default function Home() {
                     setProcess={setProcess} 
                     setOpenModal={setOpenModal} 
                     openModal={openModal}
+                    setOpenMessage={setOpenMessage}
+                    setMessageText={setMessageText}
+                    openMessage={openMessage}
+                    setOpenMessage={setOpenMessage}
                     ></FormWindow>
                 </div>
             </div>

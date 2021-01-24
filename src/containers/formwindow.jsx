@@ -40,12 +40,10 @@ export default function FormWindow(props) {
 
     const handleChangeInterest = (event) => {
         const { value, name } = event.target
-        //console.log(name, value)
         setInterest({ ...interest, [name]: value })
     };
 
     const handleAddToInterested = () => {
-        //console.log(interest)
         setInterested([
             ...interested,
             {
@@ -57,7 +55,6 @@ export default function FormWindow(props) {
 
     const handleChange = (event) => {
         const { value, name } = event.target
-        //console.log(name, value)   
         setProcess({ ...process, [name]: value })
     };
 
@@ -100,17 +97,16 @@ export default function FormWindow(props) {
             setOpenMessage(true)
             setProcess({ id: 0, assunto: "", data: "", interessados: [], descricao: "" });
             setInterested([])
-            
+
         }
-        //console.log(processes)
         setOpenModal(false)
         history.push("/processos");
-        
+
     }
 
     const handleSubmitProcess = (e) => {
         e.preventDefault()
-        if(interested.length > 0) {
+        if (interested.length > 0) {
             sendProcess()
         }
     }
@@ -127,104 +123,103 @@ export default function FormWindow(props) {
                     </Button>
                 </Box>
             }
-            
+
             <Box>
                 <Dialog fullWidth open={openModal} onClose={handleClose} aria-labelledby="form-dialog-title">
 
                     <DialogTitle id="form-dialog-title">Cadastro de Processo</DialogTitle>
                     <form onSubmit={handleSubmitProcess}>
-                    <DialogContent>
-                        <Grid container spacing={2} direction="column">
-                            <Grid item xs={12}>
-                                <TextField
-                                    autoFocus
-                                    required
-                                    id="assunto"
-                                    label="Assunto"
-                                    margin="dense"
-                                    type="text"
-                                    fullWidth
-                                    name="assunto"
-                                    value={process.assunto}
-                                    onChange={handleChange}
-                                    style={{ fontSize: '14px' }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography style={{ fontSize: '14px', color: "#757575" }}>Interessados</Typography>
-                                {interested.map(item => (
-                                    <Typography key={item.id}>
-                                        {item.nome}
-                                    </Typography>
-                                ))}
-                            </Grid>
-                            <Grid container item alignItems="flex-end">
-                                <Grid item xs={8}>
+                        <DialogContent>
+                            <Grid container spacing={2} direction="column">
+                                <Grid item xs={12}>
                                     <TextField
-                                        
-                                        id="name"
-                                        label="Novo Interessado"
+                                        autoFocus
+                                        required
+                                        id="assunto"
+                                        label="Assunto"
                                         margin="dense"
-                                        variant="standard"
+                                        type="text"
                                         fullWidth
-                                        name="nome"
-                                        onChange={handleChangeInterest}
+                                        name="assunto"
+                                        value={process.assunto}
+                                        onChange={handleChange}
                                         style={{ fontSize: '14px' }}
                                     />
                                 </Grid>
-                                <Grid item xs={4}>
-                                    <Box ml={1}>
-                                        <Button
-                                            onClick={handleAddToInterested}
-                                            variant="contained">Adicionar
-                                        </Button>
-                                    </Box>
+                                <Grid item xs={12}>
+                                    <Typography style={{ fontSize: '14px', color: "#757575" }}>Interessados</Typography>
+                                    {interested.map(item => (
+                                        <Typography key={item.id}>
+                                            {item.nome}
+                                        </Typography>
+                                    ))}
                                 </Grid>
-                            <Grid item xs={12}>
-                                {interested.length <= 0 ? <Typography color="error">Nenhum interessado cadastrado</Typography> : ""}
+                                <Grid container item alignItems="flex-end">
+                                    <Grid item xs={8}>
+                                        <TextField
+
+                                            id="name"
+                                            label="Novo Interessado"
+                                            margin="dense"
+                                            variant="standard"
+                                            fullWidth
+                                            name="nome"
+                                            onChange={handleChangeInterest}
+                                            style={{ fontSize: '14px' }}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <Box ml={1}>
+                                            <Button
+                                                onClick={handleAddToInterested}
+                                                variant="contained">Adicionar
+                                        </Button>
+                                        </Box>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        {interested.length <= 0 ? <Typography color="error">Nenhum interessado cadastrado</Typography> : ""}
+                                    </Grid>
+                                </Grid>
+                                <Grid item xs={12}>
+
+                                    <TextField
+                                        autoFocus
+                                        type="text"
+                                        required
+                                        id="descricao"
+                                        label="Descrição"
+                                        margin="dense"
+                                        variant="standard"
+                                        fullWidth
+                                        name="descricao"
+                                        value={process.descricao}
+                                        onChange={handleChange}
+                                        style={{ fontSize: '14px' }}
+                                        multiline
+                                    />
+                                </Grid>
+
                             </Grid>
-                            </Grid>
-                            <Grid item xs={12}>
-                                
-                                <TextField
-                                    autoFocus
-                                    type="text"
-                                    required
-                                    id="descricao"
-                                    label="Descrição"
-                                    margin="dense"
-                                    variant="standard"
-                                    fullWidth
-                                    name="descricao"
-                                    value={process.descricao}
-                                    onChange={handleChange}
-                                    style={{ fontSize: '14px' }} 
-                                    multiline                                  
-                                />
-                            </Grid>
-                           
-                        </Grid>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            style={{ fontSize: '14px' }}
-                            onClick={handleClose}
-                        >
-                            Cancelar
+                        </DialogContent>
+                        <DialogActions>
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                style={{ fontSize: '14px' }}
+                                onClick={handleClose}
+                            >
+                                Cancelar
                         </Button>
 
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            style={{ fontSize: '14px' }}
-                            type="submit"
-                            
-                        >
-                            Salvar
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                style={{ fontSize: '14px' }}
+                                type="submit"
+                            >
+                                Salvar
                         </Button>
-                    </DialogActions>
+                        </DialogActions>
                     </form>
                 </Dialog>
 

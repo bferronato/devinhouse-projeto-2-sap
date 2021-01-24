@@ -1,14 +1,12 @@
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { TextField } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import { useState } from 'react';
+import { useState } from 'react'
+import IconButton from '@material-ui/core/IconButton'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import { TextField } from '@material-ui/core'
+import SearchIcon from '@material-ui/icons/Search'
 import { Redirect } from 'react-router-dom'
 
 export default function SearchBar(props) {
     const { searchValue } = props
-
-
     const [filter, setFilter] = useState(searchValue)
     const [isRedirect, setIsRedirect] = useState(false)
 
@@ -21,19 +19,9 @@ export default function SearchBar(props) {
         setIsRedirect(true)
     }
 
-    // const searchProcess = async (filter) => {
-    //     const processData = await ProcessAPI.searchProcess(filter)
-    //     setProcesses(processData)
-    // } 
-
-    //  useEffect(() => {
-    //     searchProcess(filter)
-    // }, [filter])
-
-
     return (
         <>
-        {isRedirect && <Redirect to={`/processos/${filter}`} />}
+            {isRedirect && <Redirect to={`/processos/${filter}`} />}
             <TextField
                 variant="outlined"
                 size="small"
@@ -44,7 +32,7 @@ export default function SearchBar(props) {
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
-                            <IconButton  onClick={onClickSearch} aria-label="pesquisar">
+                            <IconButton onClick={onClickSearch} aria-label="pesquisar">
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>

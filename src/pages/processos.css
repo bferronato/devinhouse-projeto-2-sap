@@ -1,18 +1,7 @@
 
-
 .flex {
    display: flex;
  
-}
-
-
-.page-content {
-   width: 100%;
-
-}
-.search-container{
-   width: 60%;
-   
 }
 
 @media (max-width: 768px) {
@@ -24,12 +13,9 @@
 
 @media (min-width: 769px) {
    .details-content {
-      
+      width: 50%;
       margin-top: 23px;
       margin-left: 20px;
    }
 }
 
-.card-list {
-   width: 100%;
-}
